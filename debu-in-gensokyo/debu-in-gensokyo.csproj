@@ -38,4 +38,12 @@
     </Content>
   </ItemGroup>
 
+  <!-- Copy content directories to output -->
+  <ItemGroup>
+    <Content Include="../debu-in-gensokyo-content/**/*.png" Visible="false">
+      <Link>content/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -7,10 +7,9 @@ namespace DebuInGensokyo
     {
         static void Main(string[] args)
         {
-            using (Game g = new Game())
+            using (DebuInGensokyo game = new DebuInGensokyo())
             {
-                new GraphicsDeviceManager(g);
-                g.Run();
+                game.Run();
             }
         }
     }
