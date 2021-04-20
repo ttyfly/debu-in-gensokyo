@@ -16,6 +16,7 @@ namespace DebuInGensokyo.Utility
             this.scale = scale;
             this.parent = parent;
         }
+        public Transform() : this(Vector2.Zero, 0, Vector2.One, null) {}
         public Vector2 absolutePostion
         {
             get { return parent.position + Vector2.Transform(position, Matrix.CreateRotationZ(rotation)); }

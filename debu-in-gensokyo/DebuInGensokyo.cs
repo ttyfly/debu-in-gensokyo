@@ -16,9 +16,10 @@ namespace DebuInGensokyo
             gdm.IsFullScreen = false;
             gdm.SynchronizeWithVerticalRetrace = true;
 
-            
-
             Content.RootDirectory = "content";
+
+            Components.Add(new Component.SpriteComponent(this));
+            Components.Add(new Component.TerrainComponent(this));
         }
         protected override void Initialize()
         {

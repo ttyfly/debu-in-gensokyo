@@ -2,21 +2,10 @@ using Microsoft.Xna.Framework;
 
 namespace DebuInGensokyo.World.Ecosystem
 {
-    class ForestOfMagic : BaseEcosystem
+    [EcosystemAttribute(EcosystemType.Ground, 4, 8, 1, 8, true)]
+    class ForestOfMagic : IEcosystem
     {
-        public override Rectangle getMinSize()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override Rectangle getMaxSize()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override Rectangle getPossibleArea()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override void Generate()
+        public void Generate()
         {
             throw new System.NotImplementedException();
         }

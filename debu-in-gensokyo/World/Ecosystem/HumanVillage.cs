@@ -2,21 +2,10 @@ using Microsoft.Xna.Framework;
 
 namespace DebuInGensokyo.World.Ecosystem
 {
-    class HumanVillage : BaseEcosystem
+    [EcosystemAttribute(EcosystemType.Ground, 2, 6, 1, 8, true)]
+    class HumanVillage : IEcosystem
     {
-        public override Rectangle getMinSize()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override Rectangle getMaxSize()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override Rectangle getPossibleArea()
-        {
-            throw new System.NotImplementedException();
-        }
-        public override void Generate()
+        public void Generate()
         {
             throw new System.NotImplementedException();
         }
