@@ -8,14 +8,21 @@ namespace DebuInGensokyo.World.Generator
         public SurfaceGenerator() {}
         public Terrain apply(Terrain terrain)
         {
-            foreach (Area area in terrain.Areas)
+            foreach (Region region in terrain.Regions)
             {
-                uint altitude = AttributeHelper.Get<EcosystemAttribute>(area.Ecosystem.GetType()).Altitude;
-                for (int i = 0; i < altitude; i++)
+                uint altitude = AttributeHelper.Get<EcosystemAttribute>(region.Ecosystem.GetType()).Altitude;
+                for (int i = 0; i < terrain.Height; i++)
                 {
-                    area.Chunks[i].FillWith(1);
+                    if (i < altitude)
+                    {
+                        region.Chunks[i].FillWith(TileRepository.Instance.GetTile(1));
+                    }
+                    else
+                    {
+                        region.Chunks[i].FillWith(TileRepository.Instance.GetTile(0));
+                    }
                 }
-                Chunk surfaceChunk = area.Chunks[altitude];
+                Chunk surfaceChunk = region.Chunks[altitude];
             }
             return terrain;
         }

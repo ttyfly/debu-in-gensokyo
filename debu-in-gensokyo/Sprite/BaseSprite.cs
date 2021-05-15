@@ -1,19 +1,22 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using DebuInGensokyo.Utility;
+using DebuInGensokyo.Physics;
 
 namespace DebuInGensokyo
 {
-    class Sprite
+    class BaseSprite
     {
         protected Transform transform;
         protected Texture2D texture;
+        protected PhysicsObject physicsObject;
         protected int layerDepth;
-        public Sprite(Texture2D texture, int layerDepth)
+        public BaseSprite(Texture2D texture, PhysicsObject physicsObject, int layerDepth)
         {
-            transform = new Transform();
             this.texture = texture;
+            this.physicsObject = physicsObject;
             this.layerDepth = layerDepth;
+            transform = new Transform();
         }
         public virtual void Initialize()
         {
@@ -21,7 +24,10 @@ namespace DebuInGensokyo
         }
         public virtual void Update(GameTime time)
         {
-
+            if (physicsObject != null)
+            {
+                physicsObject.Update(time);
+            }
         }
         public virtual bool isDead()
         {
@@ -41,9 +47,17 @@ namespace DebuInGensokyo
                 layerDepth
             );
         }
+        public virtual void OnCollide(CollisionPart part)
+        {
+            physicsObject.Collide(part);
+        }
         public Transform Transform
         {
             get { return transform; }
+        }
+        public PhysicsObject PhysicsObject
+        {
+            get { return physicsObject; }
         }
     }
 }

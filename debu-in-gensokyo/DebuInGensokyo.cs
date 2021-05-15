@@ -20,6 +20,7 @@ namespace DebuInGensokyo
 
             Components.Add(new Component.SpriteComponent(this));
             Components.Add(new Component.TerrainComponent(this));
+            Services.AddService(typeof(Service.CameraService), new Service.CameraService(new Rectangle(4608, 4450, 960, 580)));
         }
         protected override void Initialize()
         {

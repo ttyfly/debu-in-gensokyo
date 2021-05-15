@@ -6,11 +6,11 @@ namespace DebuInGensokyo.Component
 {
     class SpriteComponent : DrawableGameComponent
     {
-        private List<Sprite> sprites;
+        private List<BaseSprite> sprites;
         private SpriteBatch batch;
         public SpriteComponent(Game game) : base(game)
         {
-            sprites = new List<Sprite>();
+            sprites = new List<BaseSprite>();
         }
         public override void Initialize()
         {
@@ -18,7 +18,7 @@ namespace DebuInGensokyo.Component
         }
         public override void Update(GameTime gameTime)
         {
-            foreach (Sprite sprite in sprites)
+            foreach (BaseSprite sprite in sprites)
             {
                 sprite.Update(gameTime);
                 if (sprite.isDead())
@@ -40,14 +40,24 @@ namespace DebuInGensokyo.Component
 				null,
 				Matrix.CreateScale(2)
             );
-            foreach (Sprite sprite in sprites)
+            foreach (BaseSprite sprite in sprites)
             {
                 sprite.Draw(batch, gameTime);
             }
             batch.End();
             base.Draw(gameTime);
         }
-        public void register(Sprite sprite)
+        protected override void LoadContent()
+        {
+            batch = new SpriteBatch(GraphicsDevice);
+            base.LoadContent();
+        }
+        protected override void UnloadContent()
+        {
+            batch.Dispose();
+            base.UnloadContent();
+        }
+        public void register(BaseSprite sprite)
         {
             sprites.Add(sprite);
             sprite.Initialize();
